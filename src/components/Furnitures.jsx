@@ -1,27 +1,32 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import * as THREE from "three";
+import { Chair } from "./Furniture/Chair";
+import { Table } from "./Furniture/Table";
 
 export const Furniture = (props) => {
 
-    const mesh = useRef();
+  let shapeElement;
 
-    const allFurnitures = {
-        box: new THREE.BoxGeometry( 1, 1, 1 ),
-        cylinder: new THREE.CylinderGeometry( 1, 1, 1, 32 ),
-        donut : new THREE.TorusGeometry( 0.5, 0.2, 3, 20 )
-    }
+  switch (props.shape) {
+    case "chair":
+      shapeElement = (
+        <Chair
+          userData={{ name: "chair", draggable: true }}
+        />
+      );
+      break;
+    case "table":
+      shapeElement = <Table userData={{ name: "table", draggable: true }} />;
+      break;
+    default:
+      shapeElement = null; // Or handle other cases as needed
+  }
 
-    const allColor = {
-        box: "red",
-        cylinder: "pink",
-        donut: "blue"
-    }
+  return (
+    <mesh position={[-70, 1, 0]}> 
+      {shapeElement}
+    </mesh>
+  );
+};
 
-        return (
-        <>
-        <mesh {...props} ref={mesh} />
-            <primitive object={allFurnitures[props.shape]} attach={"geometry"} />
-            <meshStandardMaterial color="hotpink" />
-        </>
-        )
-}
+export default Furniture;

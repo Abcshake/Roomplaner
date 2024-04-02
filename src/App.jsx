@@ -1,13 +1,48 @@
-import { Canvas, extend } from "@react-three/fiber";
-import { Experience } from "./components/Experience";
-import * as THREE from 'three'; 
-
+import { Canvas } from "@react-three/fiber";
+import { Office } from "./components/Office";
+import { OrbitControls } from "@react-three/drei";
+import Furniture from "./components/Furnitures";
+import React, { useState } from "react";
+import * as THREE from "three";
 function App() {
+  const [furnitureOnCanvas, setFruintureOnCanvas] = useState([]);
+  const [isDragging, setIsDragging] = useState(false);
+
+
+  const addFurniture = (e) => {
+    const furnitureCount = furnitureOnCanvas.length;
+
+    const furniture = e.target.getAttribute("data-shape");
+    console.log(furniture);
+
+    setFruintureOnCanvas(
+      [...furnitureOnCanvas, 
+        <Furniture 
+        shape={furniture}
+        key={furnitureCount}
+        position={[0,1,(-1 + (furnitureCount*3))]}
+        setIsDragging={setIsDragging} 
+        />
+      ]);
+
+  }
+
   return (
-    <Canvas shadows camera={{ position: [3, 3, 3], fov: 30 }}>
-      <color attach="background" args={["#ececec"]} />
-      <Experience />
+    <div style={{ width: "95vw", height: "95vh" }}>
+
+    <Canvas shadows camera={{ position: [-30, 25, 25] }}>
+    {!isDragging && <OrbitControls />} 
+      <ambientLight intensity={1} />
+      <Office />
+      {[...furnitureOnCanvas]}
+      <gridHelper args={[500, 500, 0xff0000, 'teal']} />
     </Canvas>
+    <div className='buttons'>
+        <button  onClick={addFurniture} data-shape={"chair"}>Chair </button>
+        <button  onClick={addFurniture} data-shape={"table"}>Table </button>
+        <button  onClick={addFurniture} data-shape={"donut"}>Donut </button>
+      </div>
+    </div>
   );
 }
 
