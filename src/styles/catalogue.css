@@ -1,0 +1,117 @@
+.catalogue-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.catalogue-sidebar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 320px;
+  max-height: calc(100vh - 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  overflow: auto;
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-header .title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.search {
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.btn {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #111827;
+  color: white;
+  border-color: #111827;
+}
+
+.btn.danger {
+  background: #fee2e2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+.btn.ghost {
+  background: transparent;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.module-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.module-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background: white;
+}
+
+.module-info .name {
+  font-weight: 600;
+}
+
+.module-info .meta {
+  color: #666;
+  font-size: 12px;
+}
+
+.module-info .price {
+  color: #111827;
+  font-weight: 600;
+}
+
+.footer {
+  font-size: 12px;
+  color: #444;
+}
+
+.footer ul {
+  margin: 6px 0 0 16px;
+}
