@@ -1,6 +1,7 @@
 import React, { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 import { Edges, Html } from "@react-three/drei";
+import { GLTFModel } from "./GLTFModel";
 
 const GROUND_PLANE = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 const TEMP_VECTOR = new THREE.Vector3();
@@ -22,7 +23,7 @@ export function ModuleMesh({
   const dragOffsetRef = useRef(new THREE.Vector3());
   const [isDragging, setIsDragging] = useState(false);
 
-  const { size, color, name } = moduleDef;
+  const { size, color, name, modelUrl } = moduleDef;
 
   const snapped = (x, y, z) => {
     const sx = Math.round(x / gridSize) * gridSize;
@@ -80,11 +81,18 @@ export function ModuleMesh({
       onPointerUp={handlePointerUp}
       onDoubleClick={handleDoubleClick}
     >
-      <mesh castShadow receiveShadow>
-        <boxGeometry args={[size.x, size.y, size.z]} />
-        <meshStandardMaterial color={color} emissive={emissive} emissiveIntensity={isSelected ? 0.2 : 0.0} />
-      </mesh>
-      <Edges scale={1.01} threshold={15} color={outlineColor} />
+      {modelUrl ? (
+        <group>
+          <GLTFModel url={modelUrl} targetSize={{ x: size.x, y: size.y, z: size.z }} />
+          <Edges scale={1.02} threshold={15} color={outlineColor} />
+        </group>
+      ) : (
+        <mesh castShadow receiveShadow>
+          <boxGeometry args={[size.x, size.y, size.z]} />
+          <meshStandardMaterial color={color} emissive={emissive} emissiveIntensity={isSelected ? 0.2 : 0.0} />
+          <Edges scale={1.01} threshold={15} color={outlineColor} />
+        </mesh>
+      )}
       <Html distanceFactor={10} position={[0, size.y / 2 + 0.15, 0]} center>
         <div style={{
           background: isSelected ? "#00aaff" : "rgba(255,255,255,0.8)",

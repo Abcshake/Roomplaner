@@ -5,7 +5,8 @@ export const MODULE_DEFINITIONS = [
     size: { x: 3, y: 3, z: 4 },
     color: "#b0c4de",
     price: 25000,
-    tags: ["living", "core"]
+    tags: ["living", "core"],
+    modelUrl: "models/Chair.glb"
   },
   {
     id: "bed-3x3",
@@ -13,7 +14,8 @@ export const MODULE_DEFINITIONS = [
     size: { x: 3, y: 3, z: 3 },
     color: "#c6e2ff",
     price: 18000,
-    tags: ["bedroom"]
+    tags: ["bedroom"],
+    modelUrl: "models/Table.glb"
   },
   {
     id: "bath-2x3",
@@ -21,7 +23,8 @@ export const MODULE_DEFINITIONS = [
     size: { x: 2, y: 3, z: 3 },
     color: "#e0e0e0",
     price: 12000,
-    tags: ["bathroom"]
+    tags: ["bathroom"],
+    modelUrl: "models/Chair.glb"
   },
   {
     id: "kitchen-3x3",
@@ -29,7 +32,8 @@ export const MODULE_DEFINITIONS = [
     size: { x: 3, y: 3, z: 3 },
     color: "#ffd39b",
     price: 22000,
-    tags: ["kitchen"]
+    tags: ["kitchen"],
+    modelUrl: "models/Table.glb"
   },
   {
     id: "hall-1x3",
@@ -37,7 +41,8 @@ export const MODULE_DEFINITIONS = [
     size: { x: 1, y: 3, z: 3 },
     color: "#f5f5f5",
     price: 6000,
-    tags: ["connector"]
+    tags: ["connector"],
+    modelUrl: "models/Chair.glb"
   },
   {
     id: "porch-3x2",
@@ -45,6 +50,7 @@ export const MODULE_DEFINITIONS = [
     size: { x: 3, y: 2.5, z: 2 },
     color: "#ffe4c4",
     price: 7000,
-    tags: ["exterior"]
+    tags: ["exterior"],
+    modelUrl: "models/Table.glb"
   }
 ];
